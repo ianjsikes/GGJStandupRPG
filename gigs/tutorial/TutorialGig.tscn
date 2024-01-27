@@ -1,0 +1,206 @@
+[gd_scene load_steps=13 format=3 uid="uid://blfqoriuq7ojj"]
+
+[ext_resource type="Script" path="res://gigs/Gig.gd" id="1_7eylp"]
+[ext_resource type="Script" path="res://gigs/Joke.gd" id="2_jdisv"]
+[ext_resource type="Script" path="res://gigs/GigCrowd.gd" id="2_l4dqt"]
+[ext_resource type="Script" path="res://gigs/GigPlayer.gd" id="2_lyihc"]
+[ext_resource type="Script" path="res://gigs/CrowdEvent.gd" id="3_g4on5"]
+[ext_resource type="Script" path="res://gigs/LaughEffect.gd" id="3_ia0s4"]
+[ext_resource type="Script" path="res://gigs/MovesListContainer.gd" id="4_0u1ey"]
+[ext_resource type="PackedScene" uid="uid://cmtdemu0kies3" path="res://ui_nodes/JokeCard.tscn" id="5_w6ovw"]
+[ext_resource type="Script" path="res://gigs/Buff.gd" id="7_8whsd"]
+[ext_resource type="Script" path="res://gigs/GameOverPopup.gd" id="7_gg7m1"]
+[ext_resource type="Script" path="res://gigs/WinPopup.gd" id="8_dfcjn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ec8j"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.290196, 0.290196, 0.290196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="TutorialGig" type="Node2D"]
+script = ExtResource("1_7eylp")
+
+[node name="Crowd" type="Node2D" parent="."]
+script = ExtResource("2_l4dqt")
+event_rate = 0.3
+
+[node name="Moves" type="Node2D" parent="Crowd"]
+
+[node name="Heckle" type="Node2D" parent="Crowd/Moves"]
+script = ExtResource("3_g4on5")
+message = "A heckler shouts something rude from the crowd!"
+
+[node name="LaughEffect" type="Node" parent="Crowd/Moves/Heckle"]
+script = ExtResource("3_ia0s4")
+laughs = -5.0
+
+[node name="MicFeedback" type="Node2D" parent="Crowd/Moves"]
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource("2_lyihc")
+
+[node name="Jokes" type="Node2D" parent="Player"]
+
+[node name="OneLiner" type="Node2D" parent="Player/Jokes"]
+script = ExtResource("2_jdisv")
+joke_name = "One-Liner!!"
+joke_description = "A quick, punchy joke"
+accuracy = 0.7
+miss_damage = 3.0
+
+[node name="LaughEffect" type="Node" parent="Player/Jokes/OneLiner"]
+script = ExtResource("3_ia0s4")
+laughs = 10.0
+
+[node name="Buffs" type="Node2D" parent="Player"]
+
+[node name="TestBuff" type="Node" parent="Player/Buffs"]
+script = ExtResource("7_8whsd")
+attack_mult = 0.2
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="SideUI" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 405.0
+grow_vertical = 2
+
+[node name="MovesListContainer" type="VBoxContainer" parent="UI/SideUI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -242.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("4_0u1ey")
+joke_card_scene = ExtResource("5_w6ovw")
+
+[node name="MeterLabel" type="Label" parent="UI"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Meter: 20.0"
+
+[node name="RoundCounter" type="Label" parent="UI"]
+offset_top = 48.0
+offset_right = 68.0
+offset_bottom = 71.0
+text = "Round: 1"
+
+[node name="MessageLabel" type="Label" parent="UI"]
+offset_top = 152.0
+offset_right = 68.0
+offset_bottom = 175.0
+text = "Start of gig"
+
+[node name="OppositeUI" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -291.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/OppositeUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/OppositeUI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "BUFFS:"
+
+[node name="GameOverUI" type="CanvasLayer" parent="."]
+script = ExtResource("7_gg7m1")
+
+[node name="Background" type="ColorRect" parent="GameOverUI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.396078)
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOverUI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="GameOverUI/CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ec8j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverUI/CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameOverUI/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Game Over!"
+
+[node name="LeaveButton" type="Button" parent="GameOverUI/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Leave Gig"
+
+[node name="WinUI" type="CanvasLayer" parent="."]
+script = ExtResource("8_dfcjn")
+
+[node name="Background" type="ColorRect" parent="WinUI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.396078)
+
+[node name="CenterContainer" type="CenterContainer" parent="WinUI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="WinUI/CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ec8j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WinUI/CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WinUI/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "You Win!"
+
+[node name="LeaveButton" type="Button" parent="WinUI/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Leave Gig"
+
+[connection signal="pressed" from="GameOverUI/CenterContainer/PanelContainer/VBoxContainer/LeaveButton" to="GameOverUI" method="_on_leave_button_pressed"]
+[connection signal="pressed" from="WinUI/CenterContainer/PanelContainer/VBoxContainer/LeaveButton" to="WinUI" method="_on_leave_button_pressed"]
