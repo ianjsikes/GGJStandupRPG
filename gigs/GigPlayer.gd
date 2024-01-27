@@ -1,3 +1,4 @@
+@tool
 extends Node
 class_name GigPlayer
 
@@ -17,6 +18,8 @@ var current_mods = {
 	"attack_mult": 0.0,
 	"accuracy_mult": 0.0,
 }
+
+@onready var sprites: MoodSwitcher = $Sprites
 
 var buffs: Array[Buff]:
 	get:
@@ -87,10 +90,21 @@ func _reduce_buffs():
 func _ready():
 	Events.round_start.connect(_on_round_start)
 	Events.buff_new.connect(_on_buff_new)
+	Events.joke_land.connect(_on_joke_land)
+	Events.joke_miss.connect(_on_joke_miss)
 
 
 func _on_round_start():
+	sprites.current_mood = "Neutral"
 	_reduce_buffs()
+
+
+func _on_joke_land():
+	sprites.current_mood = "Happy"
+
+
+func _on_joke_miss():
+	sprites.current_mood = "Sad"
 
 
 func _on_buff_new(new_buff: Buff):

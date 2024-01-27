@@ -21,11 +21,13 @@ func execute():
 
 	if randf() > acc:
 		# You missed!
+		Events.joke_miss.emit()
 		print("you missed!")
 		Events.set_debug_message.emit("Joke %s missed!" % joke_name)
 		if miss_damage > 0.0:
 			Events.apply_laughs.emit(-miss_damage)
 	else:
+		Events.joke_land.emit()
 		print("you hit!")
 		Events.set_debug_message.emit("Joke %s hit!" % joke_name)
 		for effect in effects:

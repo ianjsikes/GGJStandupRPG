@@ -23,6 +23,10 @@ Events="*res://util/Events.gd"
 GameState="*res://GameState.gd"
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
