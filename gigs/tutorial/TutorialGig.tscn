@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://blfqoriuq7ojj"]
+[gd_scene load_steps=15 format=3 uid="uid://blfqoriuq7ojj"]
 
 [ext_resource type="Script" path="res://gigs/Gig.gd" id="1_7eylp"]
 [ext_resource type="Script" path="res://gigs/Joke.gd" id="2_jdisv"]
@@ -8,9 +8,11 @@
 [ext_resource type="Script" path="res://gigs/LaughEffect.gd" id="3_ia0s4"]
 [ext_resource type="Script" path="res://gigs/MovesListContainer.gd" id="4_0u1ey"]
 [ext_resource type="PackedScene" uid="uid://cmtdemu0kies3" path="res://ui_nodes/JokeCard.tscn" id="5_w6ovw"]
-[ext_resource type="Script" path="res://gigs/Buff.gd" id="7_8whsd"]
+[ext_resource type="PackedScene" uid="uid://btu5rcv03xdvd" path="res://buffs/SmallAttackBoost.tscn" id="7_ay52g"]
+[ext_resource type="Script" path="res://gigs/BuffEffect.gd" id="7_c3y84"]
 [ext_resource type="Script" path="res://gigs/GameOverPopup.gd" id="7_gg7m1"]
 [ext_resource type="Script" path="res://gigs/WinPopup.gd" id="8_dfcjn"]
+[ext_resource type="Script" path="res://gigs/BuffsListContainer.gd" id="10_3cn8e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ec8j"]
 content_margin_left = 16.0
@@ -45,8 +47,6 @@ message = "A heckler shouts something rude from the crowd!"
 script = ExtResource("3_ia0s4")
 laughs = -5.0
 
-[node name="MicFeedback" type="Node2D" parent="Crowd/Moves"]
-
 [node name="Player" type="Node2D" parent="."]
 script = ExtResource("2_lyihc")
 
@@ -63,11 +63,18 @@ miss_damage = 3.0
 script = ExtResource("3_ia0s4")
 laughs = 10.0
 
-[node name="Buffs" type="Node2D" parent="Player"]
+[node name="RaiseAttack" type="Node2D" parent="Player/Jokes"]
+script = ExtResource("2_jdisv")
+joke_name = "Raise Attack"
+joke_description = "This raises your attack. Wait... attack?"
+accuracy = 0.7
+miss_damage = 3.0
 
-[node name="TestBuff" type="Node" parent="Player/Buffs"]
-script = ExtResource("7_8whsd")
-attack_mult = 0.2
+[node name="BuffEffect" type="Node" parent="Player/Jokes/RaiseAttack"]
+script = ExtResource("7_c3y84")
+buff_scene = ExtResource("7_ay52g")
+
+[node name="Buffs" type="Node2D" parent="Player"]
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -117,15 +124,16 @@ offset_left = -291.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/OppositeUI"]
+[node name="BuffsListContainer" type="VBoxContainer" parent="UI/OppositeUI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("10_3cn8e")
 
-[node name="Label" type="Label" parent="UI/OppositeUI/VBoxContainer"]
+[node name="Header" type="Label" parent="UI/OppositeUI/BuffsListContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "BUFFS:"

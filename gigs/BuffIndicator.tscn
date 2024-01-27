@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjcds4f2gfq0h"]
+
+[ext_resource type="Script" path="res://gigs/BuffIndicator.gd" id="1_dy57v"]
+
+[node name="BuffIndicator" type="Label"]
+theme_override_font_sizes/font_size = 18
+text = "This is a buff"
+script = ExtResource("1_dy57v")

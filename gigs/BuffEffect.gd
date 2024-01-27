@@ -1,11 +1,9 @@
 extends Effect
+class_name BuffEffect
+
+@export var buff_scene: PackedScene
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass  # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func apply():
+	var new_buff = buff_scene.instantiate()
+	Events.buff_new.emit(new_buff)

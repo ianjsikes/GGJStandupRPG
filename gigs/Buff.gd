@@ -2,7 +2,7 @@ extends Node
 class_name Buff
 
 @export var timer: int = -1
-@export var counter: int = 0
+@export var counter: int = 1
 
 @export var is_debuff: bool = false
 @export var is_from_crowd: bool = false
@@ -15,21 +15,29 @@ class_name Buff
 @export var attack_mult: float = 0.0
 @export var accuracy_mult: float = 0.0
 
+@export var buff_indicator_scene: PackedScene
+
 
 func get_mods():
 	return {
-		"defense_flat": defense_flat,
-		"attack_flat": attack_flat,
-		"accuracy_flat": accuracy_flat,
-		"defense_mult": defense_mult,
-		"attack_mult": attack_mult,
-		"accuracy_mult": accuracy_mult,
+		"defense_flat": defense_flat * counter,
+		"attack_flat": attack_flat * counter,
+		"accuracy_flat": accuracy_flat * counter,
+		"defense_mult": defense_mult * counter,
+		"attack_mult": attack_mult * counter,
+		"accuracy_mult": accuracy_mult * counter,
 		[name]: counter,
 	}
 
 
 func _ready():
 	Events.round_end.connect(_buff_tick)
+	call_deferred("_setup_buff")
+
+
+func _setup_buff():
+	print("Buff _setup_buff")
+	Events.buff_added.emit(self)
 
 
 func _buff_tick():
@@ -37,5 +45,6 @@ func _buff_tick():
 		timer -= 1
 
 	if timer == 0:
-		# TODO: Remove buff
 		queue_free()
+
+	Events.buff_update.emit(self)

@@ -86,7 +86,17 @@ func _reduce_buffs():
 
 func _ready():
 	Events.round_start.connect(_on_round_start)
+	Events.buff_new.connect(_on_buff_new)
 
 
 func _on_round_start():
 	_reduce_buffs()
+
+
+func _on_buff_new(new_buff: Buff):
+	for buff in buffs:
+		if buff.name == new_buff.name:
+			# TODO: Merge buffs instead of creating duplicate
+			return
+
+	$Buffs.add_child(new_buff)
