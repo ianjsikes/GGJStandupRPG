@@ -1,6 +1,6 @@
 extends Node
 
-signal apply_laughs(laughs: float)
+signal apply_laughs(laughs: float, type: Types.JokeType)
 signal meter_update(meter: float, animated: bool)
 
 signal round_end
@@ -11,6 +11,11 @@ signal gig_begin
 signal show_tutorial(tutorial_name: String)
 signal hide_tutorial(tutorial_name: String)
 signal bring_joke_card_to_front(index: int)
+
+signal crowd_supereffective
+signal crowd_ineffective
+signal crowd_normal_effective
+signal crowd_lose_laughs
 
 signal player_end_turn
 signal crowd_end_turn

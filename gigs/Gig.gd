@@ -1,10 +1,16 @@
 extends Node
 class_name Gig
 
+const SUPEREFFECTIVE_MOD = 2.0
+const INEFFECTIVE_MOD = 0.5
+
 @export_range(0.0, 100.0) var meter: float = 20.0
 var round_counter: int = 0
 var meter_success_threshold = 80.0
 @export var round_limit: int = 10
+
+@export var positive_type: Types.JokeType
+@export var negative_type: Types.JokeType
 
 var player: GigPlayer
 
@@ -73,13 +79,30 @@ func start_gig():
 		combat_state = CombatState.LOSE
 
 
-func _on_apply_laughs(laughs: float):
+func _on_apply_laughs(laughs: float, type: Types.JokeType):
+	await get_tree().create_timer(0.3).timeout
+
+	var supereffective = positive_type and positive_type == type
+	var ineffective = negative_type and negative_type == type
+
 	var current_meter = meter
 	var modded_laughs: float
 	if laughs > 0.0:
 		modded_laughs = player.get_modded_laughs(laughs)
 	else:
 		modded_laughs = player.get_modded_defense(laughs)
+
+	if supereffective:
+		modded_laughs *= SUPEREFFECTIVE_MOD
+		Events.crowd_supereffective.emit()
+	elif ineffective:
+		modded_laughs *= INEFFECTIVE_MOD
+		Events.crowd_ineffective.emit()
+	else:
+		if modded_laughs > 0:
+			Events.crowd_normal_effective.emit()
+		else:
+			Events.crowd_lose_laughs.emit()
 
 	meter += modded_laughs
 

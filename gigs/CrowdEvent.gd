@@ -20,4 +20,4 @@ func execute():
 	Events.set_debug_message.emit(message)
 
 	for effect in effects:
-		await effect.apply()
+		await effect.apply(Types.JokeType.VANILLA)

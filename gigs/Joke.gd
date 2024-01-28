@@ -15,20 +15,19 @@ var effects: Array[Effect]:
 
 
 func execute():
-	print("JOKE: Executing %s" % joke_name)
+	Events.set_debug_message.emit('You use "%s"' % joke_name)
+	await get_tree().create_timer(0.5).timeout
+
 	var player: GigPlayer = N.get_ancestor(self, GigPlayer)
 	var acc = player.get_modded_accuracy(accuracy)
 
 	if randf() > acc:
-		# You missed!
 		Events.joke_miss.emit()
-		print("you missed!")
-		Events.set_debug_message.emit("Joke %s missed!" % joke_name)
+		Events.set_debug_message.emit("The joke didn't land")
 		if miss_damage > 0.0:
-			Events.apply_laughs.emit(-miss_damage)
+			Events.apply_laughs.emit(-miss_damage, Types.JokeType.VANILLA)
 	else:
 		Events.joke_land.emit()
-		print("you hit!")
-		Events.set_debug_message.emit("Joke %s hit!" % joke_name)
+		Events.set_debug_message.emit("The joke landed")
 		for effect in effects:
-			await effect.apply()
+			await effect.apply(joke_type)

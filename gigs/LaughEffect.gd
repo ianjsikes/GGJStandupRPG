@@ -4,5 +4,5 @@ class_name LaughEffect
 @export var laughs: float
 
 
-func apply():
-	Events.apply_laughs.emit(laughs)
+func apply(type: Types.JokeType):
+	Events.apply_laughs.emit(laughs, type)

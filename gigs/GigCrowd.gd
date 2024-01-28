@@ -11,7 +11,6 @@ var crowd_events: Array[CrowdEvent]:
 
 
 func take_turn():
-	Events.set_debug_message.emit("The crowd is taking a turn...")
 	await get_tree().create_timer(1.5).timeout
 
 	if randf() <= event_rate:
@@ -23,8 +22,7 @@ func take_turn():
 				break
 			total_weight -= event.weight
 	else:
-		Events.set_debug_message.emit("No crowd events")
-		await get_tree().create_timer(1.0).timeout
+		pass
 
 	Events.crowd_end_turn.emit()
 
@@ -32,12 +30,44 @@ func take_turn():
 func _ready():
 	Events.round_start.connect(_on_round_start)
 	Events.gig_combat_state_enter.connect(_on_combat_state_enter)
+	Events.crowd_ineffective.connect(_on_ineffective)
+	Events.crowd_supereffective.connect(_on_supereffective)
+	Events.crowd_normal_effective.connect(_on_normal_effective)
+	Events.crowd_lose_laughs.connect(_on_lose_laughs)
+	Events.crowd_supereffective.connect(_on_supereffective)
 
 
 func _on_round_start():
-	pass
+	get_parent().get_node("BGCrowd").current_mood = "Neutral"
+	get_parent().get_node("FGCrowd").current_mood = "Neutral"
 
 
 func _on_combat_state_enter(state: Gig.CombatState):
 	if state == Gig.CombatState.CROWD_TURN:
 		take_turn()
+
+
+func _on_ineffective():
+	$SFXLaughBoo.play()
+	get_parent().get_node("BGCrowd").current_mood = "Sad"
+	get_parent().get_node("FGCrowd").current_mood = "Sad"
+	Events.set_debug_message.emit("The crowd doesn't like that type of joke")
+
+
+func _on_normal_effective():
+	$SFXLaughSmall.play()
+	get_parent().get_node("BGCrowd").current_mood = "Happy"
+	get_parent().get_node("FGCrowd").current_mood = "Happy"
+
+
+func _on_lose_laughs():
+	$SFXLaughBoo.play()
+	get_parent().get_node("BGCrowd").current_mood = "Sad"
+	get_parent().get_node("FGCrowd").current_mood = "Sad"
+
+
+func _on_supereffective():
+	$SFXLaughBig.play()
+	get_parent().get_node("BGCrowd").current_mood = "Happy"
+	get_parent().get_node("FGCrowd").current_mood = "Happy"
+	Events.set_debug_message.emit("The crowd loves that type of joke!")
