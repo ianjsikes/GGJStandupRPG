@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://chwqy6ktrwib4"]
+
+[ext_resource type="Script" path="res://over_world/OverWorld.gd" id="1_h83hv"]
+[ext_resource type="Texture2D" uid="uid://cmp6gyf2xhjwy" path="res://placeholders/OutGrey.png" id="2_sgflk"]
+[ext_resource type="Script" path="res://over_world/OverWorldClub.gd" id="3_hff0l"]
+[ext_resource type="Texture2D" uid="uid://dim284ia7esgx" path="res://placeholders/cap-city-comedy.jpg" id="4_tixhu"]
+[ext_resource type="PackedScene" uid="uid://c77tusyns1qga" path="res://start_menu/StartMenu.tscn" id="5_e58qq"]
+[ext_resource type="PackedScene" uid="uid://blfqoriuq7ojj" path="res://gigs/tutorial/TutorialGig.tscn" id="6_vw756"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cifkn"]
+size = Vector2(314, 261.5)
+
+[node name="OverWorld" type="Node2D"]
+script = ExtResource("1_h83hv")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(838, 273)
+scale = Vector2(0.660358, 0.674431)
+texture = ExtResource("2_sgflk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(262, 468)
+scale = Vector2(0.174262, 0.174262)
+script = ExtResource("3_hff0l")
+club_scene = ExtResource("5_e58qq")
+club_name = "club1"
+isEnabled = true
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+position = Vector2(361.525, -0.000701904)
+scale = Vector2(5.7385, 5.7385)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(-66, -19)
+shape = SubResource("RectangleShape2D_cifkn")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(659, 102)
+scale = Vector2(0.594937, 0.594937)
+texture = ExtResource("4_tixhu")
+script = ExtResource("3_hff0l")
+club_scene = ExtResource("6_vw756")
+club_name = "club2"
+
+[connection signal="mouse_entered" from="Sprite2D/Area2D" to="Sprite2D" method="_on_hover_enter"]
+[connection signal="mouse_exited" from="Sprite2D/Area2D" to="Sprite2D" method="_on_hover_exit"]
