@@ -75,10 +75,15 @@ func _ready():
 	Events.buff_new.connect(_on_buff_new)
 	Events.joke_land.connect(_on_joke_land)
 	Events.joke_miss.connect(_on_joke_miss)
+	Events.buff_added.connect(_on_buff_added)
 
 
 func _on_round_start():
 	sprites.current_mood = "Neutral"
+	_reduce_buffs()
+
+
+func _on_buff_added(_buff):
 	_reduce_buffs()
 
 

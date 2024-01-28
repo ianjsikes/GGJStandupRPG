@@ -24,10 +24,12 @@ func execute():
 	if randf() > acc:
 		Events.joke_miss.emit()
 		Events.set_debug_message.emit("The joke didn't land")
+		GameState.current_gig.current_joke_failed = true
 		if miss_damage > 0.0:
 			Events.apply_laughs.emit(-miss_damage, Types.JokeType.VANILLA)
 	else:
 		Events.joke_land.emit()
+		GameState.current_gig.current_joke_failed = false
 		Events.set_debug_message.emit("The joke landed")
 		for effect in effects:
 			await effect.apply(joke_type)

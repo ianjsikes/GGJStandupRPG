@@ -12,6 +12,9 @@ var meter_success_threshold = 80.0
 @export var positive_type: Types.JokeType
 @export var negative_type: Types.JokeType
 
+var current_joke_failed: bool = false
+var last_joke_failed: bool = false
+
 var player: GigPlayer
 
 enum CombatState { INTRO, PLAYER_TURN, CROWD_TURN, LOSE, WIN }
@@ -45,6 +48,9 @@ func start_gig():
 			break
 
 		Events.round_start.emit()
+		last_joke_failed = current_joke_failed
+		current_joke_failed = false
+
 		combat_state = CombatState.PLAYER_TURN
 
 		await get_tree().process_frame

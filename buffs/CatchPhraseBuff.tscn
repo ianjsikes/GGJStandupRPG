@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4h8ootj0ptbv"]
+
+[ext_resource type="Script" path="res://gigs/Buff.gd" id="1_1s55n"]
+[ext_resource type="Texture2D" uid="uid://d11bp1767fvx6" path="res://gigs/art/Punch_Buff_Icon.png" id="2_n5wpm"]
+
+[node name="CatchPhraseBuff" type="Node"]
+script = ExtResource("1_1s55n")
+buff_icon = ExtResource("2_n5wpm")
+buff_tooltip = "It just keeps getting funnier!!!"

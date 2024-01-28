@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3irgppnifntj"]
+
+[ext_resource type="Script" path="res://gigs/Buff.gd" id="1_y5lvn"]
+[ext_resource type="Texture2D" uid="uid://d11bp1767fvx6" path="res://gigs/art/Punch_Buff_Icon.png" id="2_8ovto"]
+
+[node name="SetUpBuff" type="Node"]
+script = ExtResource("1_y5lvn")
+buff_icon = ExtResource("2_8ovto")
+buff_tooltip = "The crowd is waiting for a punchline"

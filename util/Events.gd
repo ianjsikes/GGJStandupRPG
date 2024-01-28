@@ -22,6 +22,7 @@ signal crowd_end_turn
 signal buff_new(buff: Buff)
 signal buff_added(buff: Buff)
 signal buff_update(buff: Buff)
+signal clear_buff(buff_name: String, stacks: int)
 signal joke_land
 signal joke_miss
 signal set_debug_message(message: String)

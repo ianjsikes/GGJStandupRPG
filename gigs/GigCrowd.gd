@@ -48,7 +48,7 @@ func _on_combat_state_enter(state: Gig.CombatState):
 
 
 func _on_ineffective():
-	$SFXLaughBoo.play()
+	$SFXCrickets.play()
 	get_parent().get_node("BGCrowd").current_mood = "Sad"
 	get_parent().get_node("FGCrowd").current_mood = "Sad"
 	Events.set_debug_message.emit("The crowd doesn't like that type of joke")
