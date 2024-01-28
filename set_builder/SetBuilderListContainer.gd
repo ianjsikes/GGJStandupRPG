@@ -6,36 +6,22 @@ extends Control
 @export var inactive_distance: float = 250.0
 
 var card_sort_tween: Tween
+var hovered = true
 
 var shuffled = false
 var first_scroll = true
 
 
 func _ready():
-	Events.gig_begin.connect(_initialize_moves)
 	child_entered_tree.connect(_handle_child_added)
 	child_exiting_tree.connect(_handle_child_removed)
 	child_order_changed.connect(_handle_child_order_change)
 	Events.bring_joke_card_to_front.connect(_handle_bring_to_front)
 	Events.choose_joke.connect(_on_choose_joke)
-	Events.gig_combat_state_enter.connect(_on_enter_combat_state)
 
 
 func _on_choose_joke(_joke_name: String):
-	(
-		create_tween()
-		. tween_property(self, "position:y", position.y + inactive_distance, 0.3)
-		. set_trans(Tween.TRANS_SINE)
-	)
-
-
-func _on_enter_combat_state(state: Gig.CombatState):
-	if state == Gig.CombatState.PLAYER_TURN:
-		(
-			create_tween()
-			. tween_property(self, "position:y", position.y - inactive_distance, 0.3)
-			. set_trans(Tween.TRANS_SINE)
-		)
+	pass
 
 
 func _handle_child_added(node: Control):
@@ -80,15 +66,29 @@ func _handle_child_order_change():
 	shuffled = false
 
 
-func _initialize_moves():
-	for joke in GameState.gig_player.jokes:
+func initialize_moves(joke_list: Array[Joke]):
+	for joke in joke_list:
 		var joke_card: JokeCard = joke_card_scene.instantiate()
 		add_child(joke_card)
 		joke_card.setup(joke)
 
 
+func remove_joke_from_list(joke_name: String):
+	for child in get_children():
+		if child.joke.joke_name == joke_name:
+			remove_child(child)
+			child.queue_free()
+			break
+
+
+func add_joke_to_list(joke: Joke):
+	var joke_card: JokeCard = joke_card_scene.instantiate()
+	add_child(joke_card)
+	joke_card.setup(joke)
+
+
 func _input(event):
-	if event is InputEventMouseButton and event.is_pressed():
+	if hovered and event is InputEventMouseButton and event.is_pressed():
 		match event.button_index:
 			MOUSE_BUTTON_WHEEL_DOWN:
 				shuffled = true
@@ -105,8 +105,8 @@ func _input(event):
 
 
 func _on_mouse_exited():
-	pass
+	hovered = false
 
 
 func _on_mouse_entered():
-	pass
+	hovered = true

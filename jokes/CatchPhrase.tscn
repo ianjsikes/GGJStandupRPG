@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cge0rfs6kfg8l"]
+
+[ext_resource type="Script" path="res://gigs/Joke.gd" id="1_qdutg"]
+[ext_resource type="Script" path="res://gigs/BuffEffect.gd" id="2_jrba0"]
+[ext_resource type="PackedScene" uid="uid://b4h8ootj0ptbv" path="res://buffs/CatchPhraseBuff.tscn" id="3_6grn4"]
+[ext_resource type="Script" path="res://gigs/LaughEffect.gd" id="4_qmcq1"]
+
+[node name="CatchPhrase" type="Node2D"]
+script = ExtResource("1_qdutg")
+joke_name = "Catchphrase"
+joke_description = "Gets more laughs every time you use it"
+accuracy = 0.8
+miss_damage = 3.0
+
+[node name="BuffEffect" type="Node" parent="."]
+script = ExtResource("2_jrba0")
+buff_scene = ExtResource("3_6grn4")
+
+[node name="LaughEffect" type="Node" parent="."]
+script = ExtResource("4_qmcq1")
+laughs = 5.0
+scales_buff = "CatchPhraseBuff"

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs8yjp8g054ig"]
+
+[ext_resource type="Script" path="res://gigs/Joke.gd" id="1_ee2c2"]
+[ext_resource type="Script" path="res://gigs/SelfDeprecateEffect.gd" id="2_sudgp"]
+
+[node name="SelfDeprecate" type="Node2D"]
+script = ExtResource("1_ee2c2")
+joke_name = "Self Deprecate"
+joke_description = "Hits big if your last joke didn't land"
+miss_damage = 3.0
+
+[node name="SelfDeprecateEffect" type="Node" parent="."]
+script = ExtResource("2_sudgp")
+laughs = 20.0

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh5thee373uc3"]
+
+[ext_resource type="Script" path="res://gigs/Joke.gd" id="1_2ribo"]
+[ext_resource type="Script" path="res://gigs/BuffEffect.gd" id="2_bv2q8"]
+[ext_resource type="PackedScene" uid="uid://d3irgppnifntj" path="res://buffs/SetUpBuff.tscn" id="3_1nyjr"]
+
+[node name="SetUp" type="Node2D"]
+script = ExtResource("1_2ribo")
+joke_name = "Set Up"
+joke_description = "Build up to something"
+accuracy = 0.95
+miss_damage = 3.0
+
+[node name="BuffEffect" type="Node" parent="."]
+script = ExtResource("2_bv2q8")
+buff_scene = ExtResource("3_1nyjr")

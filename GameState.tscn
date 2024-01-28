@@ -1,0 +1,13 @@
+[gd_scene load_steps=7 format=3 uid="uid://c80lyfw0ro1k7"]
+
+[ext_resource type="Script" path="res://GameState.gd" id="1_jmv1d"]
+[ext_resource type="PackedScene" uid="uid://cge0rfs6kfg8l" path="res://jokes/CatchPhrase.tscn" id="2_eul3v"]
+[ext_resource type="PackedScene" uid="uid://bxuta6u1yb7jt" path="res://jokes/OneLiner.tscn" id="3_5udn2"]
+[ext_resource type="PackedScene" uid="uid://cs8yjp8g054ig" path="res://jokes/SelfDeprecate.tscn" id="4_8uqod"]
+[ext_resource type="PackedScene" uid="uid://br7lwg51bj3t5" path="res://jokes/Punchline.tscn" id="4_smijh"]
+[ext_resource type="PackedScene" uid="uid://dh5thee373uc3" path="res://jokes/SetUp.tscn" id="5_h63ue"]
+
+[node name="GameState" type="Node2D"]
+script = ExtResource("1_jmv1d")
+joke_set = Array[PackedScene]([ExtResource("3_5udn2"), ExtResource("5_h63ue"), ExtResource("4_smijh")])
+joke_pool_unlock_one = Array[PackedScene]([ExtResource("2_eul3v"), ExtResource("4_8uqod")])

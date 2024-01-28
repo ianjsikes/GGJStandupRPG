@@ -1,7 +1,6 @@
-[gd_scene load_steps=52 format=3 uid="uid://blfqoriuq7ojj"]
+[gd_scene load_steps=47 format=3 uid="uid://blfqoriuq7ojj"]
 
 [ext_resource type="Script" path="res://gigs/Gig.gd" id="1_7eylp"]
-[ext_resource type="Script" path="res://gigs/Joke.gd" id="2_jdisv"]
 [ext_resource type="Script" path="res://gigs/GigCrowd.gd" id="2_l4dqt"]
 [ext_resource type="Script" path="res://gigs/GigPlayer.gd" id="2_lyihc"]
 [ext_resource type="Texture2D" uid="uid://bikxm2g334p0h" path="res://gigs/tutorial/art/2. Background Color.png" id="2_mk1pc"]
@@ -14,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://cmtdemu0kies3" path="res://ui_nodes/JokeCard.tscn" id="5_w6ovw"]
 [ext_resource type="Texture2D" uid="uid://bpgrhsc2r3dlr" path="res://gigs/tutorial/art/5.3 Neutral Background Crowd.png" id="6_6jftt"]
 [ext_resource type="Texture2D" uid="uid://dkpy6g6w0rnae" path="res://gigs/tutorial/art/5.1 Happy Background Crowd.png" id="7_7wc7l"]
-[ext_resource type="Script" path="res://gigs/BuffEffect.gd" id="7_c3y84"]
 [ext_resource type="Script" path="res://gigs/GameOverPopup.gd" id="7_gg7m1"]
 [ext_resource type="Texture2D" uid="uid://c6qobhp15pqfc" path="res://gigs/tutorial/art/8.3 Neutral Front Color.png" id="7_y4um5"]
 [ext_resource type="Texture2D" uid="uid://hqv6tky8mkox" path="res://gigs/tutorial/art/8.3 Neutral Front Line.png" id="8_5ckij"]
@@ -30,10 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://dc6hr5m6ooe6s" path="res://gigs/art/alien/Sad Alien Color.png" id="13_5iymi"]
 [ext_resource type="Texture2D" uid="uid://ckm8l50p6p1bm" path="res://gigs/tutorial/art/8.2 Sad Front Color.png" id="13_ledba"]
 [ext_resource type="Texture2D" uid="uid://b5faiswtaps4r" path="res://gigs/art/alien/Sad Alien Line.png" id="14_bholu"]
-[ext_resource type="PackedScene" uid="uid://b4h8ootj0ptbv" path="res://buffs/CatchPhraseBuff.tscn" id="14_k2yfp"]
 [ext_resource type="Texture2D" uid="uid://4gpnhnf168bq" path="res://gigs/tutorial/art/8.2 Sad Front Line.png" id="14_mc3tq"]
-[ext_resource type="PackedScene" uid="uid://d3irgppnifntj" path="res://buffs/SetUpBuff.tscn" id="14_sem6s"]
-[ext_resource type="Script" path="res://gigs/SelfDeprecateEffect.gd" id="14_wsvyk"]
 [ext_resource type="FontFile" uid="uid://cxetmfjunlb5k" path="res://asset_drop/Itim-Regular.ttf" id="28_30o4y"]
 [ext_resource type="Script" path="res://gigs/RoundCounter.gd" id="28_g6002"]
 [ext_resource type="AudioStream" uid="uid://dmv7f0ppxmeut" path="res://sfx/crowd_laugh_small.wav" id="28_r4hjo"]
@@ -129,66 +124,6 @@ centered = false
 script = ExtResource("2_lyihc")
 
 [node name="Jokes" type="Node2D" parent="Player"]
-
-[node name="OneLiner" type="Node2D" parent="Player/Jokes"]
-script = ExtResource("2_jdisv")
-joke_name = "One-liner"
-joke_description = "A quick, punchy joke"
-accuracy = 0.101
-miss_damage = 3.0
-
-[node name="LaughEffect" type="Node" parent="Player/Jokes/OneLiner"]
-script = ExtResource("3_ia0s4")
-laughs = 7.0
-
-[node name="SelfDeprecate" type="Node2D" parent="Player/Jokes"]
-script = ExtResource("2_jdisv")
-joke_name = "Self Deprecate"
-joke_description = "Hits big if your last joke didn't land"
-miss_damage = 3.0
-
-[node name="SelfDeprecateEffect" type="Node" parent="Player/Jokes/SelfDeprecate"]
-script = ExtResource("14_wsvyk")
-laughs = 20.0
-
-[node name="Punchline" type="Node2D" parent="Player/Jokes"]
-script = ExtResource("2_jdisv")
-joke_name = "Punchline"
-joke_description = "Grants laughs based off of your stacks of \"Setup\""
-accuracy = 0.75
-miss_damage = 3.0
-
-[node name="LaughEffect" type="Node" parent="Player/Jokes/Punchline"]
-script = ExtResource("3_ia0s4")
-laughs = 20.0
-clears_buff = "SetUpBuff"
-
-[node name="CatchPhrase" type="Node2D" parent="Player/Jokes"]
-script = ExtResource("2_jdisv")
-joke_name = "Catchphrase"
-joke_description = "Gets more laughs every time you use it"
-accuracy = 0.8
-miss_damage = 3.0
-
-[node name="BuffEffect" type="Node" parent="Player/Jokes/CatchPhrase"]
-script = ExtResource("7_c3y84")
-buff_scene = ExtResource("14_k2yfp")
-
-[node name="LaughEffect" type="Node" parent="Player/Jokes/CatchPhrase"]
-script = ExtResource("3_ia0s4")
-laughs = 5.0
-scales_buff = "CatchPhraseBuff"
-
-[node name="SetUp" type="Node2D" parent="Player/Jokes"]
-script = ExtResource("2_jdisv")
-joke_name = "Set Up"
-joke_description = "Build up to something"
-accuracy = 0.95
-miss_damage = 3.0
-
-[node name="BuffEffect" type="Node" parent="Player/Jokes/SetUp"]
-script = ExtResource("7_c3y84")
-buff_scene = ExtResource("14_sem6s")
 
 [node name="Buffs" type="Node2D" parent="Player"]
 

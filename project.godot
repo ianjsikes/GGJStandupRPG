@@ -20,7 +20,7 @@ config/icon="res://icon.png"
 Types="*res://Types.gd"
 NodeUtils="*res://util/NodeUtils.gd"
 Events="*res://util/Events.gd"
-GameState="*res://GameState.gd"
+GameState="*res://GameState.tscn"
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 Sfx="*res://sfx/Sfx.tscn"
 

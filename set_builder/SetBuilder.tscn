@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbdu7bhknsr2c"]
+
+[ext_resource type="Script" path="res://set_builder/SetBuilder.gd" id="1_1a0jb"]
+[ext_resource type="PackedScene" uid="uid://cmtdemu0kies3" path="res://ui_nodes/JokeCard.tscn" id="3_dgvsl"]
+[ext_resource type="Script" path="res://set_builder/SetBuilderListContainer.gd" id="4_0aw8r"]
+
+[node name="SetBuilder" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1a0jb")
+
+[node name="SetList" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 571.0
+offset_top = 29.0
+offset_right = 611.0
+offset_bottom = 69.0
+script = ExtResource("4_0aw8r")
+joke_card_scene = ExtResource("3_dgvsl")
+
+[node name="PoolList" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 29.0
+offset_right = 48.0
+offset_bottom = 69.0
+script = ExtResource("4_0aw8r")
+joke_card_scene = ExtResource("3_dgvsl")
+
+[node name="AllJokes" type="Node2D" parent="."]
+
+[node name="SetLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 568.0
+offset_top = 4.0
+offset_right = 626.0
+offset_bottom = 24.0
+text = "Your Set (X/5)"
+
+[node name="PoolLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 69.0
+offset_bottom = 20.0
+text = "Joke Pool"
+
+[node name="HelpText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 502.0
+offset_right = 674.0
+offset_bottom = 582.0
+text = "Click a joke to move
+it from your joke pool
+to your set of active jokes
+and vice versa."
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1019.0
+offset_top = 11.0
+offset_right = 1126.0
+offset_bottom = 42.0
+text = "Back To Map"
+
+[connection signal="mouse_entered" from="SetList" to="SetList" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="SetList" to="SetList" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="PoolList" to="PoolList" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PoolList" to="PoolList" method="_on_mouse_exited"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

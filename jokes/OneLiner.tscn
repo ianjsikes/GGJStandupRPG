@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxuta6u1yb7jt"]
+
+[ext_resource type="Script" path="res://gigs/Joke.gd" id="1_u17td"]
+[ext_resource type="Script" path="res://gigs/LaughEffect.gd" id="2_jofss"]
+
+[node name="OneLiner" type="Node2D"]
+script = ExtResource("1_u17td")
+joke_name = "One-liner"
+joke_description = "A quick, punchy joke"
+accuracy = 0.101
+miss_damage = 3.0
+
+[node name="LaughEffect" type="Node" parent="."]
+script = ExtResource("2_jofss")
+laughs = 7.0

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://br7lwg51bj3t5"]
+
+[ext_resource type="Script" path="res://gigs/Joke.gd" id="1_njswq"]
+[ext_resource type="Script" path="res://gigs/LaughEffect.gd" id="2_hk02f"]
+
+[node name="Punchline" type="Node2D"]
+script = ExtResource("1_njswq")
+joke_name = "Punchline"
+joke_description = "Grants laughs based off of your stacks of \"Setup\""
+accuracy = 0.75
+miss_damage = 3.0
+
+[node name="LaughEffect" type="Node" parent="."]
+script = ExtResource("2_hk02f")
+laughs = 20.0
+clears_buff = "SetUpBuff"

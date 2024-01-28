@@ -77,6 +77,9 @@ func _ready():
 	Events.joke_miss.connect(_on_joke_miss)
 	Events.buff_added.connect(_on_buff_added)
 
+	for joke_scene in GameState.joke_set:
+		$Jokes.add_child(joke_scene.instantiate())
+
 
 func _on_round_start():
 	sprites.current_mood = "Neutral"

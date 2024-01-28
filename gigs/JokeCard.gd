@@ -36,7 +36,8 @@ func setup(_joke: Joke):
 
 
 func press():
-	disabled = true
+	if GameState.current_gig:
+		disabled = true
 	highlighted = false
 	Events.choose_joke.emit(joke.joke_name)
 	Events.hide_tutorial.emit("JokeConfirmTutorial")
@@ -57,8 +58,9 @@ func _input(event):
 
 
 func _on_choose_joke(_joke_name: String):
-	print("Disabling button")
-	disabled = true
+	if GameState.current_gig:
+		print("Disabling button")
+		disabled = true
 
 
 func _on_enter_combat_state(state: Gig.CombatState):
@@ -80,10 +82,12 @@ func shuffled():
 
 func _on_mouse_exited():
 	hovered = false
+	get_parent()._on_mouse_exited()
 	highlighted = false
 
 
 func _on_mouse_entered():
 	hovered = true
+	get_parent()._on_mouse_entered()
 	if shown:
 		highlighted = true
