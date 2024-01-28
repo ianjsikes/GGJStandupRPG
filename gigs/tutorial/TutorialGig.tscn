@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://blfqoriuq7ojj"]
+[gd_scene load_steps=45 format=3 uid="uid://blfqoriuq7ojj"]
 
 [ext_resource type="Script" path="res://gigs/Gig.gd" id="1_7eylp"]
 [ext_resource type="Script" path="res://gigs/Joke.gd" id="2_jdisv"]
@@ -40,6 +40,9 @@
 [ext_resource type="Texture2D" uid="uid://btki52fknfo7c" path="res://gigs/art/LaughOMeterArrow.png" id="31_ussmt"]
 [ext_resource type="FontFile" uid="uid://bfixvwrrbop53" path="res://asset_drop/PermanentMarker-Regular.ttf" id="34_fg2lb"]
 [ext_resource type="Script" path="res://ui_nodes/TutorialPopup.gd" id="37_ibop3"]
+[ext_resource type="PackedScene" uid="uid://bjcds4f2gfq0h" path="res://gigs/BuffIndicator.tscn" id="38_jsgpo"]
+[ext_resource type="Script" path="res://gigs/MessageLog.gd" id="39_avrv0"]
+[ext_resource type="PackedScene" uid="uid://8ey6dodo11lc" path="res://ui_nodes/LogMessage.tscn" id="40_tf5cc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ec8j"]
 content_margin_left = 16.0
@@ -339,12 +342,6 @@ script = ExtResource("4_0u1ey")
 joke_card_scene = ExtResource("5_w6ovw")
 card_stack_offset = Vector2(20, 40)
 
-[node name="MessageLabel" type="Label" parent="UI"]
-offset_top = 152.0
-offset_right = 68.0
-offset_bottom = 175.0
-text = "Start of gig"
-
 [node name="OppositeUI" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 11
@@ -356,18 +353,22 @@ grow_horizontal = 0
 grow_vertical = 2
 
 [node name="BuffsListContainer" type="VBoxContainer" parent="UI/OppositeUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("10_3cn8e")
+layout_mode = 0
+offset_left = -302.0
+offset_top = 15.0
+offset_right = -5.0
+offset_bottom = 55.0
 
 [node name="Header" type="Label" parent="UI/OppositeUI/BuffsListContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 28
 text = "BUFFS:"
+
+[node name="BuffsList" type="HBoxContainer" parent="UI/OppositeUI/BuffsListContainer"]
+layout_mode = 2
+script = ExtResource("10_3cn8e")
+buff_indicator_scene = ExtResource("38_jsgpo")
 
 [node name="JokeScrollTutorial" type="PanelContainer" parent="UI"]
 offset_left = 402.0
@@ -393,6 +394,25 @@ layout_mode = 2
 text = "Click on highlighted
 joke to confirm your
 move"
+
+[node name="MessageLog" type="VBoxContainer" parent="UI"]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -564.0
+offset_top = -201.0
+offset_right = -25.0
+offset_bottom = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 10
+theme_override_constants/separation = 4
+alignment = 2
+script = ExtResource("39_avrv0")
+log_message_scene = ExtResource("40_tf5cc")
+chars_per_second = 50.0
 
 [node name="GameOverUI" type="CanvasLayer" parent="."]
 script = ExtResource("7_gg7m1")

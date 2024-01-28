@@ -20,7 +20,6 @@ var combat_state: CombatState = CombatState.INTRO:
 func _ready():
 	Events.apply_laughs.connect(_on_apply_laughs)
 	Events.choose_joke.connect(_on_choose_joke)
-	Events.set_debug_message.connect(_on_set_debug_message)
 	player = N.get_child(self, GigPlayer)
 	GameState.gig_player = player
 	GameState.current_gig = self
@@ -97,7 +96,3 @@ func _on_choose_joke(joke_name: String):
 	print("Choosing joke: %s" % joke_name)
 	# TODO: Some sort of game state transition
 	player.execute_joke(joke_name)
-
-
-func _on_set_debug_message(message: String):
-	$UI/MessageLabel.text = message

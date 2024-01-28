@@ -2,18 +2,11 @@
 extends Node
 class_name GigPlayer
 
-const ACCURACY_GAIN_PER_STAT_POINT = 0.05
-const LAUGH_ATTACK_MULTIPLIER = 0.2
-const LAUGH_DEFENSE_MULTIPLIER = 0.2
-
 var defense_stat: int = 10
 var attack_stat: int = 10
 var accuracy_stat: int = 10
 
 var current_mods = {
-	"defense_flat": 0,
-	"attack_flat": 0,
-	"accuracy_flat": 0,
 	"defense_mult": 0.0,
 	"attack_mult": 0.0,
 	"accuracy_mult": 0.0,
@@ -43,35 +36,25 @@ func execute_joke(joke_name: String):
 
 
 func get_modded_laughs(base_laughs: float):
-	var stat = float(attack_stat)
-	stat += current_mods["attack_flat"]
-
-	stat = stat * (1 + current_mods["attack_mult"])
-	return base_laughs * ((stat * LAUGH_ATTACK_MULTIPLIER) - 1)
+	var mod = float(attack_stat) / 10.0
+	mod *= 1 + current_mods["attack_mult"]
+	return base_laughs * mod
 
 
 func get_modded_defense(base_laughs: float):
-	var stat = float(defense_stat)
-	stat += current_mods["defense_flat"]
-
-	stat = stat * (1 + current_mods["defense_mult"])
-	return base_laughs / ((stat * LAUGH_DEFENSE_MULTIPLIER) - 1)
+	var mod = float(defense_stat) / 10.0
+	mod *= 1 + current_mods["defense_mult"]
+	return base_laughs / mod
 
 
 func get_modded_accuracy(base_accuracy: float):
-	var stat = float(accuracy_stat)
-	stat += current_mods["accuracy_flat"]
-
-	stat = stat * (1 + current_mods["accuracy_mult"])
-
-	return base_accuracy + (stat - 10.0) * ACCURACY_GAIN_PER_STAT_POINT
+	var mod = float(accuracy_stat) / 10.0
+	mod *= 1 + current_mods["accuracy_mult"]
+	return base_accuracy * mod
 
 
 func _reduce_buffs():
 	var all_mods = {
-		"defense_flat": 0,
-		"attack_flat": 0,
-		"accuracy_flat": 0,
 		"defense_mult": 0.0,
 		"attack_mult": 0.0,
 		"accuracy_mult": 0.0,
@@ -110,7 +93,11 @@ func _on_joke_miss():
 func _on_buff_new(new_buff: Buff):
 	for buff in buffs:
 		if buff.name == new_buff.name:
-			# TODO: Merge buffs instead of creating duplicate
+			if buff.timed:
+				buff.counter = new_buff.counter
+			else:
+				buff.counter += new_buff.counter
+			Events.buff_update.emit(buff)
 			return
 
 	$Buffs.add_child(new_buff)

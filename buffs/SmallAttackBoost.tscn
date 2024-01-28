@@ -1,11 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://btu5rcv03xdvd"]
 
 [ext_resource type="Script" path="res://gigs/Buff.gd" id="1_l260e"]
-[ext_resource type="PackedScene" uid="uid://bjcds4f2gfq0h" path="res://gigs/BuffIndicator.tscn" id="2_vdeht"]
+[ext_resource type="Texture2D" uid="uid://d11bp1767fvx6" path="res://gigs/art/Punch_Buff_Icon.png" id="3_531u0"]
 
 [node name="SmallAttackBoost" type="Node"]
 script = ExtResource("1_l260e")
-timer = 2
-counter = 3
 attack_mult = 0.2
-buff_indicator_scene = ExtResource("2_vdeht")
+buff_icon = ExtResource("3_531u0")
+buff_tooltip = "Your jokes are hitting harder"
