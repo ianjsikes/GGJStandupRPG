@@ -1,6 +1,8 @@
 extends Node
 
 signal apply_laughs(laughs: float)
+signal meter_update(meter: float, animated: bool)
+
 signal round_end
 signal round_start
 signal choose_joke(joke_name: String)

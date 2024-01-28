@@ -24,6 +24,8 @@ func _ready():
 	player = N.get_child(self, GigPlayer)
 	GameState.gig_player = player
 
+	Events.meter_update.emit(meter, false)
+
 	Events.gig_begin.emit()
 
 	start_gig()
@@ -82,7 +84,7 @@ func _on_apply_laughs(laughs: float):
 
 	meter += modded_laughs
 
-	$UI/MeterLabel.text = "Meter: %.2f" % meter
+	Events.meter_update.emit(meter, true)
 	print(
 		(
 			"Meter change! Old: %.2f, New: %.2f, Base laughs: %.2f, Modded laughs: %.2f"

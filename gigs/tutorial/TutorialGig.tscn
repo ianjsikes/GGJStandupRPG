@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://blfqoriuq7ojj"]
+[gd_scene load_steps=37 format=3 uid="uid://blfqoriuq7ojj"]
 
 [ext_resource type="Script" path="res://gigs/Gig.gd" id="1_7eylp"]
 [ext_resource type="Script" path="res://gigs/Joke.gd" id="2_jdisv"]
@@ -32,6 +32,9 @@
 [ext_resource type="Texture2D" uid="uid://ckm8l50p6p1bm" path="res://gigs/tutorial/art/8.2 Sad Front Color.png" id="13_ledba"]
 [ext_resource type="Texture2D" uid="uid://b5faiswtaps4r" path="res://gigs/art/alien/Sad Alien Line.png" id="14_bholu"]
 [ext_resource type="Texture2D" uid="uid://4gpnhnf168bq" path="res://gigs/tutorial/art/8.2 Sad Front Line.png" id="14_mc3tq"]
+[ext_resource type="Texture2D" uid="uid://b773kmc3s1iic" path="res://gigs/art/LaughOMeter.png" id="30_bo35e"]
+[ext_resource type="Script" path="res://gigs/LaughOMeter.gd" id="30_d55fc"]
+[ext_resource type="Texture2D" uid="uid://btki52fknfo7c" path="res://gigs/art/LaughOMeterArrow.png" id="31_ussmt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ec8j"]
 content_margin_left = 16.0
@@ -114,7 +117,7 @@ script = ExtResource("2_lyihc")
 script = ExtResource("2_jdisv")
 joke_name = "One-Liner!!"
 joke_description = "A quick, punchy joke"
-accuracy = 0.3
+accuracy = 0.9
 miss_damage = 3.0
 
 [node name="LaughEffect" type="Node" parent="Player/Jokes/OneLiner"]
@@ -241,10 +244,33 @@ grow_vertical = 0
 script = ExtResource("4_0u1ey")
 joke_card_scene = ExtResource("5_w6ovw")
 
-[node name="MeterLabel" type="Label" parent="UI"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Meter: 20.0"
+[node name="LaughOMeter" type="Control" parent="UI/SideUI"]
+anchors_preset = 0
+offset_left = 92.0
+offset_right = 345.0
+offset_bottom = 150.0
+pivot_offset = Vector2(127, 0)
+script = ExtResource("30_d55fc")
+arrow_move_speed = 20.0
+
+[node name="Meter" type="TextureRect" parent="UI/SideUI/LaughOMeter"]
+layout_mode = 2
+offset_right = 1024.0
+offset_bottom = 612.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("30_bo35e")
+
+[node name="Arrow" type="TextureRect" parent="UI/SideUI/LaughOMeter"]
+layout_mode = 2
+offset_left = 59.0
+offset_top = -29.0
+offset_right = 199.0
+offset_bottom = 390.0
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(68, 36)
+texture = ExtResource("31_ussmt")
 
 [node name="RoundCounter" type="Label" parent="UI"]
 offset_top = 48.0
