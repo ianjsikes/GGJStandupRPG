@@ -1,6 +1,7 @@
 extends Node
 
 var gig_player: GigPlayer = null
+var current_gig: Gig = null
 
 
 # Called when the node enters the scene tree for the first time.

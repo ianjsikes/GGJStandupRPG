@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dadupb08jy2kv"]
+
+[ext_resource type="AudioStream" uid="uid://cf3owcpqdndu6" path="res://sfx/paper-shuffling.wav" id="1_nvqis"]
+
+[node name="Sfx" type="Node2D"]
+
+[node name="PaperShuffle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_nvqis")

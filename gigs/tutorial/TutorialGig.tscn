@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://blfqoriuq7ojj"]
+[gd_scene load_steps=42 format=3 uid="uid://blfqoriuq7ojj"]
 
 [ext_resource type="Script" path="res://gigs/Gig.gd" id="1_7eylp"]
 [ext_resource type="Script" path="res://gigs/Joke.gd" id="2_jdisv"]
@@ -32,9 +32,14 @@
 [ext_resource type="Texture2D" uid="uid://ckm8l50p6p1bm" path="res://gigs/tutorial/art/8.2 Sad Front Color.png" id="13_ledba"]
 [ext_resource type="Texture2D" uid="uid://b5faiswtaps4r" path="res://gigs/art/alien/Sad Alien Line.png" id="14_bholu"]
 [ext_resource type="Texture2D" uid="uid://4gpnhnf168bq" path="res://gigs/tutorial/art/8.2 Sad Front Line.png" id="14_mc3tq"]
+[ext_resource type="FontFile" uid="uid://cxetmfjunlb5k" path="res://asset_drop/Itim-Regular.ttf" id="28_30o4y"]
+[ext_resource type="Script" path="res://gigs/RoundCounter.gd" id="28_g6002"]
 [ext_resource type="Texture2D" uid="uid://b773kmc3s1iic" path="res://gigs/art/LaughOMeter.png" id="30_bo35e"]
 [ext_resource type="Script" path="res://gigs/LaughOMeter.gd" id="30_d55fc"]
+[ext_resource type="AudioStream" uid="uid://dpvv8vih12xlo" path="res://sfx/tick.wav" id="31_7t3pt"]
 [ext_resource type="Texture2D" uid="uid://btki52fknfo7c" path="res://gigs/art/LaughOMeterArrow.png" id="31_ussmt"]
+[ext_resource type="FontFile" uid="uid://bfixvwrrbop53" path="res://asset_drop/PermanentMarker-Regular.ttf" id="34_fg2lb"]
+[ext_resource type="Script" path="res://ui_nodes/TutorialPopup.gd" id="37_ibop3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ec8j"]
 content_margin_left = 16.0
@@ -113,6 +118,17 @@ script = ExtResource("2_lyihc")
 
 [node name="Jokes" type="Node2D" parent="Player"]
 
+[node name="RaiseAttack" type="Node2D" parent="Player/Jokes"]
+script = ExtResource("2_jdisv")
+joke_name = "Raise Attack"
+joke_description = "This raises your attack. Wait... attack?"
+accuracy = 0.7
+miss_damage = 3.0
+
+[node name="BuffEffect" type="Node" parent="Player/Jokes/RaiseAttack"]
+script = ExtResource("7_c3y84")
+buff_scene = ExtResource("7_ay52g")
+
 [node name="OneLiner" type="Node2D" parent="Player/Jokes"]
 script = ExtResource("2_jdisv")
 joke_name = "One-Liner!!"
@@ -124,16 +140,16 @@ miss_damage = 3.0
 script = ExtResource("3_ia0s4")
 laughs = 10.0
 
-[node name="RaiseAttack" type="Node2D" parent="Player/Jokes"]
+[node name="OneLiner2" type="Node2D" parent="Player/Jokes"]
 script = ExtResource("2_jdisv")
-joke_name = "Raise Attack"
-joke_description = "This raises your attack. Wait... attack?"
-accuracy = 0.7
+joke_name = "Another Joke"
+joke_description = "A quick, punchy joke"
+accuracy = 0.9
 miss_damage = 3.0
 
-[node name="BuffEffect" type="Node" parent="Player/Jokes/RaiseAttack"]
-script = ExtResource("7_c3y84")
-buff_scene = ExtResource("7_ay52g")
+[node name="LaughEffect" type="Node" parent="Player/Jokes/OneLiner2"]
+script = ExtResource("3_ia0s4")
+laughs = 10.0
 
 [node name="Buffs" type="Node2D" parent="Player"]
 
@@ -232,23 +248,64 @@ anchor_bottom = 1.0
 offset_right = 405.0
 grow_vertical = 2
 
-[node name="MovesListContainer" type="VBoxContainer" parent="UI/SideUI"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -242.0
-grow_horizontal = 2
-grow_vertical = 0
-script = ExtResource("4_0u1ey")
-joke_card_scene = ExtResource("5_w6ovw")
+[node name="RoundCounter" type="VBoxContainer" parent="UI/SideUI"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 104.0
+offset_bottom = 92.0
+script = ExtResource("28_g6002")
+
+[node name="Label" type="Label" parent="UI/SideUI/RoundCounter"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("28_30o4y")
+theme_override_font_sizes/font_size = 24
+text = "Round:"
+
+[node name="Control" type="Control" parent="UI/SideUI/RoundCounter"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CurrentRound" type="Label" parent="UI/SideUI/RoundCounter/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("34_fg2lb")
+theme_override_font_sizes/font_size = 40
+text = "10"
+horizontal_alignment = 2
+
+[node name="Slash" type="Label" parent="UI/SideUI/RoundCounter/Control"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = -8.0
+offset_right = 75.0
+offset_bottom = 124.0
+rotation = 0.335253
+theme_override_fonts/font = ExtResource("34_fg2lb")
+theme_override_font_sizes/font_size = 90
+text = "/"
+
+[node name="TotalRounds" type="Label" parent="UI/SideUI/RoundCounter/Control"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 57.0
+offset_right = 75.0
+offset_bottom = 116.0
+theme_override_fonts/font = ExtResource("34_fg2lb")
+theme_override_font_sizes/font_size = 40
+text = "10"
+
+[node name="TickSFX" type="AudioStreamPlayer" parent="UI/SideUI/RoundCounter"]
+stream = ExtResource("31_7t3pt")
 
 [node name="LaughOMeter" type="Control" parent="UI/SideUI"]
 anchors_preset = 0
-offset_left = 92.0
-offset_right = 345.0
+offset_left = 172.0
+offset_right = 425.0
 offset_bottom = 150.0
+scale = Vector2(1.5, 1.5)
 pivot_offset = Vector2(127, 0)
 script = ExtResource("30_d55fc")
 arrow_move_speed = 20.0
@@ -272,11 +329,15 @@ scale = Vector2(0.25, 0.25)
 pivot_offset = Vector2(68, 36)
 texture = ExtResource("31_ussmt")
 
-[node name="RoundCounter" type="Label" parent="UI"]
-offset_top = 48.0
-offset_right = 68.0
-offset_bottom = 71.0
-text = "Round: 1"
+[node name="MovesListContainer" type="Control" parent="UI/SideUI"]
+anchors_preset = 0
+offset_left = 14.0
+offset_top = 498.0
+offset_right = 54.0
+offset_bottom = 538.0
+script = ExtResource("4_0u1ey")
+joke_card_scene = ExtResource("5_w6ovw")
+card_stack_offset = Vector2(20, 40)
 
 [node name="MessageLabel" type="Label" parent="UI"]
 offset_top = 152.0
@@ -307,6 +368,31 @@ script = ExtResource("10_3cn8e")
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "BUFFS:"
+
+[node name="JokeScrollTutorial" type="PanelContainer" parent="UI"]
+offset_left = 402.0
+offset_top = 351.0
+offset_right = 575.0
+offset_bottom = 395.0
+script = ExtResource("37_ibop3")
+
+[node name="Label" type="Label" parent="UI/JokeScrollTutorial"]
+layout_mode = 2
+text = "Scroll to select a joke"
+
+[node name="JokeConfirmTutorial" type="PanelContainer" parent="UI"]
+visible = false
+offset_left = 462.0
+offset_top = 484.0
+offset_right = 635.0
+offset_bottom = 528.0
+script = ExtResource("37_ibop3")
+
+[node name="Label" type="Label" parent="UI/JokeConfirmTutorial"]
+layout_mode = 2
+text = "Click on highlighted
+joke to confirm your
+move"
 
 [node name="GameOverUI" type="CanvasLayer" parent="."]
 script = ExtResource("7_gg7m1")

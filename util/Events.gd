@@ -8,6 +8,10 @@ signal round_start
 signal choose_joke(joke_name: String)
 signal gig_begin
 
+signal show_tutorial(tutorial_name: String)
+signal hide_tutorial(tutorial_name: String)
+signal bring_joke_card_to_front(index: int)
+
 signal player_end_turn
 signal crowd_end_turn
 signal buff_new(buff: Buff)

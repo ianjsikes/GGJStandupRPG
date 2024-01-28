@@ -23,6 +23,7 @@ func _ready():
 	Events.set_debug_message.connect(_on_set_debug_message)
 	player = N.get_child(self, GigPlayer)
 	GameState.gig_player = player
+	GameState.current_gig = self
 
 	Events.meter_update.emit(meter, false)
 
@@ -41,7 +42,6 @@ func start_gig():
 		Events.round_start.emit()
 		combat_state = CombatState.PLAYER_TURN
 
-		$UI/RoundCounter.text = "Round: %s" % round_counter
 		await get_tree().process_frame
 
 		print("\nRound %s starting\n" % round_counter)
