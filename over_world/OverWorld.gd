@@ -10,3 +10,7 @@ func _ready():
 func _process(delta):
 	pass
 
+
+
+func _on_hover_exit():
+	pass # Replace with function body.

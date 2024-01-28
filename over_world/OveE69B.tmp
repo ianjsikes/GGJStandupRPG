@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://chwqy6ktrwib4"]
+
+[ext_resource type="Script" path="res://over_world/OverWorld.gd" id="1_h83hv"]
+[ext_resource type="Texture2D" uid="uid://3uvkkjvopthw" path="res://placeholders/dallas-comedy-club.jpeg" id="2_a1cco"]
+[ext_resource type="Script" path="res://over_world/OverWorldClub.gd" id="3_hff0l"]
+[ext_resource type="Texture2D" uid="uid://dim284ia7esgx" path="res://placeholders/cap-city-comedy.jpg" id="4_tixhu"]
+[ext_resource type="PackedScene" uid="uid://c77tusyns1qga" path="res://start_menu/StartMenu.tscn" id="5_e58qq"]
+[ext_resource type="PackedScene" uid="uid://blfqoriuq7ojj" path="res://gigs/tutorial/TutorialGig.tscn" id="6_vw756"]
+
+[node name="OverWorld" type="Node2D"]
+script = ExtResource("1_h83hv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(224.055, 112.75)
+scale = Vector2(0.174262, 0.174262)
+texture = ExtResource("2_a1cco")
+script = ExtResource("3_hff0l")
+club_scene = ExtResource("5_e58qq")
+club_name = "club1"
+isEnabled = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(916, 162)
+texture = ExtResource("4_tixhu")
+script = ExtResource("3_hff0l")
+club_scene = ExtResource("6_vw756")
+club_name = "club2"
