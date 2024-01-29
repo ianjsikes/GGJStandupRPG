@@ -7,6 +7,7 @@ signal round_end
 signal round_start
 signal choose_joke(joke_name: String)
 signal gig_begin
+signal level_up
 
 signal show_tutorial(tutorial_name: String)
 signal hide_tutorial(tutorial_name: String)

@@ -13,6 +13,7 @@ func _ready():
 
 func _on_enter_combat_state(state: Gig.CombatState):
 	if state == Gig.CombatState.WIN:
+		GameState.max_level += 1
 		$Background.show()
 		$CenterContainer.show()
 		var tween = create_tween()
@@ -27,4 +28,6 @@ func _on_exit_combat_state(_state: Gig.CombatState):
 
 
 func _on_leave_button_pressed():
-	SceneManager.change_scene("res://start_menu/StartMenu.tscn", {"pattern": "curtains"})
+	SceneManager.change_scene("res://over_world/OverWorld.tscn", {"pattern": "curtains"})
+	await get_tree().create_timer(1.0).timeout
+	Events.level_up.emit()

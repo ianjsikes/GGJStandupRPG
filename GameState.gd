@@ -2,7 +2,11 @@ extends Node
 
 var gig_player: GigPlayer = null
 var current_gig: Gig = null
-@export var max_level: int = 1
+@export var max_level: int = 0
+
+var defense_stat: int = 10
+var attack_stat: int = 10
+var accuracy_stat: int = 10
 
 var max_set_size: int = 4
 

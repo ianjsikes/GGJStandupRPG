@@ -77,6 +77,10 @@ func _ready():
 	Events.joke_miss.connect(_on_joke_miss)
 	Events.buff_added.connect(_on_buff_added)
 
+	defense_stat = GameState.defense_stat
+	attack_stat = GameState.attack_stat
+	accuracy_stat = GameState.accuracy_stat
+
 	for joke_scene in GameState.joke_set:
 		$Jokes.add_child(joke_scene.instantiate())
 

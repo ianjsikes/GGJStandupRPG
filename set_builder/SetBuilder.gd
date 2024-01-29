@@ -66,4 +66,4 @@ func update_labels():
 
 func _on_back_button_pressed():
 	# TODO: Go to map scene
-	SceneManager.change_scene("res://start_menu/StartMenu.tscn", {"pattern": "curtains"})
+	SceneManager.change_scene("res://over_world/OverWorld.tscn", {"pattern": "curtains"})
