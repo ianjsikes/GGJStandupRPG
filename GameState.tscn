@@ -9,6 +9,5 @@
 
 [node name="GameState" type="Node2D"]
 script = ExtResource("1_jmv1d")
-max_level = 1
 joke_set = Array[PackedScene]([ExtResource("3_5udn2"), ExtResource("5_h63ue"), ExtResource("4_smijh")])
 joke_pool_unlock_one = Array[PackedScene]([ExtResource("2_eul3v"), ExtResource("4_8uqod")])

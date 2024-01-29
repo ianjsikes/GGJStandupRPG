@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://chwqy6ktrwib4"]
+[gd_scene load_steps=31 format=3 uid="uid://chwqy6ktrwib4"]
 
 [ext_resource type="Script" path="res://over_world/OverWorld.gd" id="1_h83hv"]
 [ext_resource type="Script" path="res://over_world/OverWorldClub.gd" id="3_hff0l"]
@@ -13,12 +13,14 @@
 [ext_resource type="Texture2D" uid="uid://cpe7qsfwx5mq0" path="res://over_world/art/Untitled_Artwork-8 3.png" id="13_gr8gs"]
 [ext_resource type="Texture2D" uid="uid://bcvi4rr808vrj" path="res://over_world/art/Untitled_Artwork-9 3.png" id="14_qpen8"]
 [ext_resource type="Texture2D" uid="uid://njs6db1n1rbq" path="res://over_world/art/Untitled_Artwork-17.png" id="15_ylk2r"]
+[ext_resource type="PackedScene" uid="uid://dmeq1klatu4fl" path="res://gigs/gutter/TheGutter.tscn" id="16_obdf6"]
 [ext_resource type="PackedScene" uid="uid://dbdu7bhknsr2c" path="res://set_builder/SetBuilder.tscn" id="16_t1xei"]
 [ext_resource type="Texture2D" uid="uid://bdgm6lhictgy7" path="res://over_world/art/Untitled_Artwork-10 3.png" id="16_v18b6"]
 [ext_resource type="Texture2D" uid="uid://f4vp0rni7a2i" path="res://over_world/art/Untitled_Artwork-11 3.png" id="17_rttc7"]
 [ext_resource type="Texture2D" uid="uid://dio54tyebpras" path="res://over_world/art/Untitled_Artwork-12 3.png" id="18_2u3h5"]
 [ext_resource type="Texture2D" uid="uid://bh6ausojnvfx1" path="res://over_world/art/Untitled_Artwork-13 3.png" id="19_qfog8"]
 [ext_resource type="Texture2D" uid="uid://cdtyi3cmlq4en" path="res://over_world/art/Untitled_Artwork-14 3.png" id="20_ocgo0"]
+[ext_resource type="PackedScene" uid="uid://cmslr4ib34v4k" path="res://gigs/basement/Basement.tscn" id="20_x35fi"]
 [ext_resource type="Texture2D" uid="uid://b5fio4iileg8s" path="res://over_world/art/Untitled_Artwork-16 2.png" id="21_dxytu"]
 [ext_resource type="Texture2D" uid="uid://p5qfs1wcex3w" path="res://over_world/art/Untitled_Artwork-15 2.png" id="22_81urj"]
 [ext_resource type="Script" path="res://over_world/LevelUpPopup.gd" id="22_crkce"]
@@ -127,7 +129,7 @@ shape = SubResource("RectangleShape2D_le4mk")
 [node name="GutterSign" type="Node2D" parent="."]
 scale = Vector2(0.6, 0.6)
 script = ExtResource("3_hff0l")
-club_scene = ExtResource("6_vw756")
+club_scene = ExtResource("16_obdf6")
 club_level = 1
 
 [node name="Layer11" type="Sprite2D" parent="GutterSign"]
@@ -152,7 +154,7 @@ shape = SubResource("RectangleShape2D_ccoem")
 [node name="BasementSign" type="Node2D" parent="."]
 scale = Vector2(0.6, 0.6)
 script = ExtResource("3_hff0l")
-club_scene = ExtResource("6_vw756")
+club_scene = ExtResource("20_x35fi")
 club_level = 2
 
 [node name="Layer14" type="Sprite2D" parent="BasementSign"]

@@ -1,0 +1,499 @@
+[gd_scene load_steps=51 format=3 uid="uid://dmeq1klatu4fl"]
+
+[ext_resource type="Script" path="res://gigs/Gig.gd" id="1_5ad6j"]
+[ext_resource type="Texture2D" uid="uid://cau2qvrwr4wn0" path="res://gigs/gutter/art/1. Background.png" id="2_lnb20"]
+[ext_resource type="Texture2D" uid="uid://c38j2fb83nppf" path="res://gigs/gutter/art/2. Background.png" id="3_trkxq"]
+[ext_resource type="Texture2D" uid="uid://b55ppipk728k" path="res://gigs/gutter/art/3 Slime.png" id="4_p8vqk"]
+[ext_resource type="Texture2D" uid="uid://3475gqukh3yc" path="res://gigs/gutter/art/4. Background Lines.png" id="5_p7x8p"]
+[ext_resource type="Texture2D" uid="uid://upq60bfj6mj3" path="res://gigs/gutter/art/5. Lighting effect.png" id="6_p0eas"]
+[ext_resource type="Texture2D" uid="uid://cpdkqc2xafo7n" path="res://gigs/gutter/art/6. Light.png" id="7_l120c"]
+[ext_resource type="Script" path="res://util/MoodSwitcher.gd" id="8_2w5h2"]
+[ext_resource type="Texture2D" uid="uid://dxjkustnkrsx8" path="res://gigs/gutter/art/9. Crowd Color.png" id="9_hjvpl"]
+[ext_resource type="Texture2D" uid="uid://bcg1oilcneba8" path="res://gigs/gutter/art/12. Crowd Neutral.png" id="10_o50r1"]
+[ext_resource type="Texture2D" uid="uid://b6ww10y2ejxj5" path="res://gigs/gutter/art/10. Crowd Happy.png" id="11_eu1kf"]
+[ext_resource type="Texture2D" uid="uid://cg3xmpbqpjlef" path="res://gigs/gutter/art/11. Crowd Sad.png" id="12_llc7p"]
+[ext_resource type="Script" path="res://gigs/GigPlayer.gd" id="13_k7blc"]
+[ext_resource type="Texture2D" uid="uid://cmhh3m50vsrng" path="res://gigs/art/alien/Neutral Alien Color.png" id="14_ymb6r"]
+[ext_resource type="Texture2D" uid="uid://ci7ukd8ffowb" path="res://gigs/art/alien/Neutral Alien Line.png" id="15_542qr"]
+[ext_resource type="Texture2D" uid="uid://bvqh1vqiin26g" path="res://gigs/art/alien/Happy Alien Color.png" id="16_efybl"]
+[ext_resource type="Texture2D" uid="uid://dwfi72mbwgqgp" path="res://gigs/art/alien/Happy Alien Line.png" id="17_3n2c2"]
+[ext_resource type="Texture2D" uid="uid://dc6hr5m6ooe6s" path="res://gigs/art/alien/Sad Alien Color.png" id="18_1q5h1"]
+[ext_resource type="Texture2D" uid="uid://b5faiswtaps4r" path="res://gigs/art/alien/Sad Alien Line.png" id="19_k5ffo"]
+[ext_resource type="Texture2D" uid="uid://c6qobhp15pqfc" path="res://gigs/tutorial/art/8.3 Neutral Front Color.png" id="20_34am1"]
+[ext_resource type="Texture2D" uid="uid://hqv6tky8mkox" path="res://gigs/tutorial/art/8.3 Neutral Front Line.png" id="21_kmuvs"]
+[ext_resource type="Texture2D" uid="uid://x44xw3kl7ygo" path="res://gigs/tutorial/art/8.1 Happy Front Color.png" id="22_nhsau"]
+[ext_resource type="Texture2D" uid="uid://dv8x2btjsm7qy" path="res://gigs/tutorial/art/8.1 Happy front Line.png" id="23_d2km4"]
+[ext_resource type="Texture2D" uid="uid://ckm8l50p6p1bm" path="res://gigs/tutorial/art/8.2 Sad Front Color.png" id="24_6slad"]
+[ext_resource type="Texture2D" uid="uid://4gpnhnf168bq" path="res://gigs/tutorial/art/8.2 Sad Front Line.png" id="25_r8qke"]
+[ext_resource type="Script" path="res://gigs/GigCrowd.gd" id="26_u0cs6"]
+[ext_resource type="Script" path="res://gigs/CrowdEvent.gd" id="27_ntxjy"]
+[ext_resource type="Script" path="res://gigs/LaughEffect.gd" id="28_o5ir2"]
+[ext_resource type="AudioStream" uid="uid://dmv7f0ppxmeut" path="res://sfx/crowd_laugh_small.wav" id="29_ji4ly"]
+[ext_resource type="AudioStream" uid="uid://cryp1s6b48tor" path="res://sfx/crowd_laugh_big.wav" id="30_k1r41"]
+[ext_resource type="AudioStream" uid="uid://chg0ytrhvket7" path="res://sfx/crowd_boo.wav" id="31_gbldq"]
+[ext_resource type="AudioStream" uid="uid://3brp6q31uu7g" path="res://sfx/crickets.wav" id="32_sqik2"]
+[ext_resource type="Script" path="res://gigs/RoundCounter.gd" id="33_mnyb6"]
+[ext_resource type="FontFile" uid="uid://cxetmfjunlb5k" path="res://asset_drop/Itim-Regular.ttf" id="34_mpu0h"]
+[ext_resource type="FontFile" uid="uid://bfixvwrrbop53" path="res://asset_drop/PermanentMarker-Regular.ttf" id="35_38wuw"]
+[ext_resource type="AudioStream" uid="uid://dpvv8vih12xlo" path="res://sfx/tick.wav" id="36_b20be"]
+[ext_resource type="Script" path="res://gigs/LaughOMeter.gd" id="37_xosas"]
+[ext_resource type="Texture2D" uid="uid://b773kmc3s1iic" path="res://gigs/art/LaughOMeter.png" id="38_fb865"]
+[ext_resource type="Texture2D" uid="uid://btki52fknfo7c" path="res://gigs/art/LaughOMeterArrow.png" id="39_f3y8k"]
+[ext_resource type="Script" path="res://gigs/MovesListContainer.gd" id="40_io0av"]
+[ext_resource type="PackedScene" uid="uid://cmtdemu0kies3" path="res://ui_nodes/JokeCard.tscn" id="41_l4p0d"]
+[ext_resource type="Script" path="res://gigs/BuffsListContainer.gd" id="42_x7gb7"]
+[ext_resource type="PackedScene" uid="uid://bjcds4f2gfq0h" path="res://gigs/BuffIndicator.tscn" id="43_dfcij"]
+[ext_resource type="Script" path="res://gigs/MessageLog.gd" id="44_nnahq"]
+[ext_resource type="PackedScene" uid="uid://8ey6dodo11lc" path="res://ui_nodes/LogMessage.tscn" id="45_luhsn"]
+[ext_resource type="Script" path="res://gigs/GameOverPopup.gd" id="46_asksb"]
+[ext_resource type="Script" path="res://gigs/WinPopup.gd" id="47_vfcxp"]
+[ext_resource type="Texture2D" uid="uid://smdh0typx1xu" path="res://gigs/gutter/art/13. Light.png" id="48_ug78f"]
+[ext_resource type="Texture2D" uid="uid://cw8i1mga0q840" path="res://gigs/gutter/art/14. Lighting.png" id="49_7c870"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ec8j"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.290196, 0.290196, 0.290196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="TutorialGig" type="Node2D"]
+script = ExtResource("1_5ad6j")
+positive_type = 3
+negative_type = 1
+
+[node name="BackgroundArt" type="Node2D" parent="."]
+
+[node name="BGColor" type="Sprite2D" parent="BackgroundArt"]
+scale = Vector2(0.62037, 0.62037)
+texture = ExtResource("2_lnb20")
+centered = false
+
+[node name="BGLines" type="Sprite2D" parent="BackgroundArt"]
+scale = Vector2(0.62037, 0.62037)
+texture = ExtResource("3_trkxq")
+centered = false
+
+[node name="BGLines2" type="Sprite2D" parent="BackgroundArt"]
+scale = Vector2(0.62037, 0.62037)
+texture = ExtResource("4_p8vqk")
+centered = false
+
+[node name="BGLines3" type="Sprite2D" parent="BackgroundArt"]
+scale = Vector2(0.62037, 0.62037)
+texture = ExtResource("5_p7x8p")
+centered = false
+
+[node name="BGLines4" type="Sprite2D" parent="BackgroundArt"]
+scale = Vector2(0.62037, 0.62037)
+texture = ExtResource("5_p7x8p")
+centered = false
+
+[node name="LightingLayer" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.768627)
+scale = Vector2(0.62, 0.62)
+texture = ExtResource("6_p0eas")
+centered = false
+
+[node name="LightingLayer2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.768627)
+scale = Vector2(0.62, 0.62)
+texture = ExtResource("7_l120c")
+centered = false
+
+[node name="BGCrowd" type="Node2D" parent="."]
+script = ExtResource("8_2w5h2")
+
+[node name="Neutral" type="Node2D" parent="BGCrowd"]
+
+[node name="Color" type="Sprite2D" parent="BGCrowd/Neutral"]
+scale = Vector2(0.62037, 0.62037)
+texture = ExtResource("9_hjvpl")
+centered = false
+
+[node name="Lines" type="Sprite2D" parent="BGCrowd/Neutral"]
+scale = Vector2(0.62037, 0.62037)
+texture = ExtResource("10_o50r1")
+centered = false
+
+[node name="Happy" type="Node2D" parent="BGCrowd"]
+visible = false
+
+[node name="Color" type="Sprite2D" parent="BGCrowd/Happy"]
+scale = Vector2(0.62037, 0.62037)
+texture = ExtResource("9_hjvpl")
+centered = false
+
+[node name="Lines" type="Sprite2D" parent="BGCrowd/Happy"]
+scale = Vector2(0.62037, 0.62037)
+texture = ExtResource("11_eu1kf")
+centered = false
+
+[node name="Sad" type="Node2D" parent="BGCrowd"]
+visible = false
+
+[node name="Color" type="Sprite2D" parent="BGCrowd/Sad"]
+scale = Vector2(0.62037, 0.62037)
+texture = ExtResource("9_hjvpl")
+centered = false
+
+[node name="Lines" type="Sprite2D" parent="BGCrowd/Sad"]
+scale = Vector2(0.62037, 0.62037)
+texture = ExtResource("12_llc7p")
+centered = false
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource("13_k7blc")
+
+[node name="Jokes" type="Node2D" parent="Player"]
+
+[node name="Buffs" type="Node2D" parent="Player"]
+
+[node name="Sprites" type="Node2D" parent="Player"]
+position = Vector2(176, 424)
+scale = Vector2(0.677191, 0.677191)
+script = ExtResource("8_2w5h2")
+
+[node name="Neutral" type="Node2D" parent="Player/Sprites"]
+
+[node name="Color" type="Sprite2D" parent="Player/Sprites/Neutral"]
+texture = ExtResource("14_ymb6r")
+flip_h = true
+
+[node name="Line" type="Sprite2D" parent="Player/Sprites/Neutral"]
+texture = ExtResource("15_542qr")
+flip_h = true
+
+[node name="Happy" type="Node2D" parent="Player/Sprites"]
+visible = false
+
+[node name="Color" type="Sprite2D" parent="Player/Sprites/Happy"]
+texture = ExtResource("16_efybl")
+flip_h = true
+
+[node name="Line" type="Sprite2D" parent="Player/Sprites/Happy"]
+texture = ExtResource("17_3n2c2")
+flip_h = true
+
+[node name="Sad" type="Node2D" parent="Player/Sprites"]
+visible = false
+
+[node name="Color" type="Sprite2D" parent="Player/Sprites/Sad"]
+texture = ExtResource("18_1q5h1")
+flip_h = true
+
+[node name="Line" type="Sprite2D" parent="Player/Sprites/Sad"]
+texture = ExtResource("19_k5ffo")
+flip_h = true
+
+[node name="FGCrowd" type="Node2D" parent="."]
+visible = false
+script = ExtResource("8_2w5h2")
+
+[node name="Neutral" type="Node2D" parent="FGCrowd"]
+
+[node name="Color" type="Sprite2D" parent="FGCrowd/Neutral"]
+scale = Vector2(0.62037, 0.62037)
+texture = ExtResource("20_34am1")
+centered = false
+
+[node name="Lines" type="Sprite2D" parent="FGCrowd/Neutral"]
+scale = Vector2(0.62037, 0.62037)
+texture = ExtResource("21_kmuvs")
+centered = false
+
+[node name="Happy" type="Node2D" parent="FGCrowd"]
+visible = false
+
+[node name="Color" type="Sprite2D" parent="FGCrowd/Happy"]
+scale = Vector2(0.62037, 0.62037)
+texture = ExtResource("22_nhsau")
+centered = false
+
+[node name="Lines" type="Sprite2D" parent="FGCrowd/Happy"]
+scale = Vector2(0.62037, 0.62037)
+texture = ExtResource("23_d2km4")
+centered = false
+
+[node name="Sad" type="Node2D" parent="FGCrowd"]
+visible = false
+
+[node name="Color" type="Sprite2D" parent="FGCrowd/Sad"]
+scale = Vector2(0.62037, 0.62037)
+texture = ExtResource("24_6slad")
+centered = false
+
+[node name="Lines" type="Sprite2D" parent="FGCrowd/Sad"]
+scale = Vector2(0.62037, 0.62037)
+texture = ExtResource("25_r8qke")
+centered = false
+
+[node name="Crowd" type="Node2D" parent="."]
+script = ExtResource("26_u0cs6")
+event_rate = 0.3
+
+[node name="Moves" type="Node2D" parent="Crowd"]
+
+[node name="Heckle" type="Node2D" parent="Crowd/Moves"]
+script = ExtResource("27_ntxjy")
+message = "A heckler shouts something rude from the crowd!"
+
+[node name="LaughEffect" type="Node" parent="Crowd/Moves/Heckle"]
+script = ExtResource("28_o5ir2")
+laughs = -5.0
+
+[node name="SFXLaughSmall" type="AudioStreamPlayer" parent="Crowd"]
+stream = ExtResource("29_ji4ly")
+
+[node name="SFXLaughBig" type="AudioStreamPlayer" parent="Crowd"]
+stream = ExtResource("30_k1r41")
+
+[node name="SFXLaughBoo" type="AudioStreamPlayer" parent="Crowd"]
+stream = ExtResource("31_gbldq")
+
+[node name="SFXCrickets" type="AudioStreamPlayer" parent="Crowd"]
+stream = ExtResource("32_sqik2")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="SideUI" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 328.0
+offset_right = 733.0
+grow_vertical = 2
+
+[node name="RoundCounter" type="VBoxContainer" parent="UI/SideUI"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 104.0
+offset_bottom = 92.0
+script = ExtResource("33_mnyb6")
+
+[node name="Label" type="Label" parent="UI/SideUI/RoundCounter"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("34_mpu0h")
+theme_override_font_sizes/font_size = 24
+text = "Round:"
+
+[node name="Control" type="Control" parent="UI/SideUI/RoundCounter"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CurrentRound" type="Label" parent="UI/SideUI/RoundCounter/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("35_38wuw")
+theme_override_font_sizes/font_size = 40
+text = "10"
+horizontal_alignment = 2
+
+[node name="Slash" type="Label" parent="UI/SideUI/RoundCounter/Control"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = -8.0
+offset_right = 75.0
+offset_bottom = 124.0
+rotation = 0.335253
+theme_override_fonts/font = ExtResource("35_38wuw")
+theme_override_font_sizes/font_size = 90
+text = "/"
+
+[node name="TotalRounds" type="Label" parent="UI/SideUI/RoundCounter/Control"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 57.0
+offset_right = 75.0
+offset_bottom = 116.0
+theme_override_fonts/font = ExtResource("35_38wuw")
+theme_override_font_sizes/font_size = 40
+text = "10"
+
+[node name="TickSFX" type="AudioStreamPlayer" parent="UI/SideUI/RoundCounter"]
+stream = ExtResource("36_b20be")
+
+[node name="LaughOMeter" type="Control" parent="UI/SideUI"]
+anchors_preset = 0
+offset_left = 172.0
+offset_right = 425.0
+offset_bottom = 150.0
+scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(127, 0)
+script = ExtResource("37_xosas")
+arrow_move_speed = 20.0
+
+[node name="Meter" type="TextureRect" parent="UI/SideUI/LaughOMeter"]
+layout_mode = 2
+offset_right = 1024.0
+offset_bottom = 612.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("38_fb865")
+
+[node name="Arrow" type="TextureRect" parent="UI/SideUI/LaughOMeter"]
+layout_mode = 2
+offset_left = 59.0
+offset_top = -29.0
+offset_right = 199.0
+offset_bottom = 390.0
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(68, 36)
+texture = ExtResource("39_f3y8k")
+
+[node name="MovesListContainer" type="Control" parent="UI/SideUI"]
+anchors_preset = 0
+offset_left = 14.0
+offset_top = 498.0
+offset_right = 54.0
+offset_bottom = 538.0
+script = ExtResource("40_io0av")
+joke_card_scene = ExtResource("41_l4p0d")
+card_stack_offset = Vector2(20, 40)
+
+[node name="OppositeUI" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -291.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="BuffsListContainer" type="VBoxContainer" parent="UI/OppositeUI"]
+layout_mode = 0
+offset_left = -841.0
+offset_top = 15.0
+offset_right = -544.0
+offset_bottom = 55.0
+
+[node name="Header" type="Label" parent="UI/OppositeUI/BuffsListContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 28
+text = "BUFFS:"
+
+[node name="BuffsList" type="HBoxContainer" parent="UI/OppositeUI/BuffsListContainer"]
+layout_mode = 2
+script = ExtResource("42_x7gb7")
+buff_indicator_scene = ExtResource("43_dfcij")
+
+[node name="MessageLog" type="VBoxContainer" parent="UI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -357.0
+offset_top = -201.0
+offset_right = -2.0
+offset_bottom = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 10
+theme_override_constants/separation = 4
+alignment = 2
+script = ExtResource("44_nnahq")
+log_message_scene = ExtResource("45_luhsn")
+chars_per_second = 50.0
+
+[node name="GameOverUI" type="CanvasLayer" parent="."]
+script = ExtResource("46_asksb")
+
+[node name="Background" type="ColorRect" parent="GameOverUI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.396078)
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOverUI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="GameOverUI/CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ec8j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverUI/CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameOverUI/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Game Over!"
+
+[node name="LeaveButton" type="Button" parent="GameOverUI/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Leave Gig"
+
+[node name="WinUI" type="CanvasLayer" parent="."]
+script = ExtResource("47_vfcxp")
+
+[node name="Background" type="ColorRect" parent="WinUI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.396078)
+
+[node name="CenterContainer" type="CenterContainer" parent="WinUI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="WinUI/CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ec8j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WinUI/CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WinUI/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "You Win!"
+
+[node name="LeaveButton" type="Button" parent="WinUI/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Leave Gig"
+
+[node name="LightingLayer3" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.768627)
+scale = Vector2(0.62, 0.62)
+texture = ExtResource("48_ug78f")
+centered = false
+
+[node name="LightingLayer4" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.768627)
+scale = Vector2(0.62, 0.62)
+texture = ExtResource("49_7c870")
+centered = false
+
+[connection signal="pressed" from="GameOverUI/CenterContainer/PanelContainer/VBoxContainer/LeaveButton" to="GameOverUI" method="_on_leave_button_pressed"]
+[connection signal="pressed" from="WinUI/CenterContainer/PanelContainer/VBoxContainer/LeaveButton" to="WinUI" method="_on_leave_button_pressed"]
